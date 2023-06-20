@@ -168,25 +168,23 @@ function Tree() {
 
     }
 
-    const depth = (currentNode,node) => {
-        let newNode = currentNode
-        let d2 = 0
-        let d1 = 0
-        if(node < currentNode.data) {
-            while(currentNode.data !== node) {
-                currentNode = currentNode.left
-                d1++
+    const depth = (currentNode, node) => {
+        let newNode = currentNode;
+        let d2 = 0;
+        let d1 = 0;
+    
+        while (currentNode.data !== node) {
+            if (node < currentNode.data) {
+                currentNode = currentNode.left;
+                d1++;
+            } else if (node > currentNode.data) {
+                currentNode = currentNode.right;
+                d2++;
             }
-            return d1
+            else return 0;
         }
-        else if(node > newNode.data) {
-            while(newNode.data !== node) {
-                newNode = newNode.right
-                d2++
-            }
-            return d2
-        }
-        else return 0
+    
+        return d1+d2;
     }
 
     const isBalanced = (currentRoot) => {
